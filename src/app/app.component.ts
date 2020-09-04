@@ -1,10 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { UserService } from './services/user.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [UserService]
 })
-export class AppComponent {
-  title = 'forum-front-end';
+export class AppComponent implements OnInit, DoCheck {
+
+  public title = 'Forum';
+  public identity;
+  public token;
+
+  constructor(
+    private _userService: UserService,
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) {
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+  }
+
+  ngOnInit() {
+    console.log(this.identity);
+    console.log(this.token);
+  }
+
+  ngDoCheck() {
+    //Check if the user is identified when something changes
+    this.identity = this._userService.getIdentity();
+  }
+
+
+  logout() {
+    //Wipe out local storage data
+    localStorage.clear();
+
+    //Wipe out identified user data
+    this.identity = null;
+    this.token = null;
+
+    //Redirect
+    this._router.navigate(['/home']);
+}
 }
