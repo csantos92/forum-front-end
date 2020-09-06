@@ -1,0 +1,42 @@
+<div class="col-lg-12 mt-3">
+    <!--Page title-->
+    <h1>{{ page_title }}</h1>
+    <hr />
+
+    <!--Pagination-->
+    <ul class="pagination mt-4">
+        <li class="page-item">
+            <a class="page-link" [routerLink]="['/topics', prev_page]" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let number of number_pages">
+            <a class="page-link" [routerLink]="['/topics', number]">{{ number }}</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" [routerLink]="['/topics', next_page]" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+
+    <!--Threads list-->
+    <ul class="list-group list-topics">
+        <li class="list-group-item" *ngFor="let topic of topics" >
+            <img class="avatar float-left mr-3" src="{{ url + 'avatar/' + topic.user.image }}" alt="avatar" *ngIf="topic.user"/>
+            <a [routerLink]="['/topic/', topic._id]">
+                <h4>{{ topic.title }}</h4>
+            </a>
+            <span class="badge badge-primary">
+                {{ topic.user.name + ' ' + topic.user.surname }}
+            </span>
+            <span class="badge badge-light ml-2">
+                {{ topic.date | amLocale: 'es' | amTimeAgo }}
+            </span>
+            <a [routerLink]="['/topic/', topic._id]" class="btn btn-sm btn-success float-right">Leer</a>
+        </li>
+    </ul>
+
+</div>

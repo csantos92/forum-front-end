@@ -8,6 +8,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { TopicsComponent } from './components/topics/topics.component';
+import { TopicDetailComponent } from './components/topic-detail/topic-detail.component';
 
 //Routes array
 const appRoutes: Routes = [
@@ -16,6 +18,9 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'settings', component: UserEditComponent },
+    { path: 'topics', component: TopicsComponent },
+    { path: 'topics/:page', component: TopicsComponent },
+    { path: 'topic/:id', component: TopicDetailComponent },
     { path: '**', component: ErrorComponent },
 ];
 

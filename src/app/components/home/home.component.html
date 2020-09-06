@@ -3,12 +3,18 @@
         <div class="container">
             <h1>{{page_title}}</h1>
             <p>Pon tus dudas, aprende y ayuda a tus compañeros desarrolladores</p>
-            <p>
-                <a class="btn btn-primary btn-lg mr-3" href="#">Ver temas</a>
+            <p *ngIf="user">
+                <a class="btn btn-primary btn-lg mr-3 mt-3" [routerLink]="['/topics']">Ver temas</a>
 
-                <a class="btn btn-success btn-lg mr-3" href="#">Ver compañeros</a>
+                <a class="btn btn-success btn-lg mr-3 mt-3" href="#">Ver compañeros</a>
 
-                <a class="btn btn-warning btn-lg mr-3" href="#">Añade un nuevo tema</a>
+                <a class="btn btn-warning btn-lg mr-3 mt-3" [routerLink]="['/panel/add']">Crear tema</a>
+            </p>
+
+            <p *ngIf="!user">
+                <a class="btn btn-primary mt-3 mr-3" [routerLink]="['/login']">Inicia sesión</a>
+
+                <a class="btn btn-success mt-3" [routerLink]="['/register']">Regístrate</a>
             </p>
         </div>
     </div>

@@ -61,4 +61,9 @@ export class TopicService {
         //Ajax petition
         return this._http.delete(this.url + 'topic/' + id, { headers: headers });
     }
+
+    getTopics(page = 1): Observable<any> {
+        //Ajax petition
+        return this._http.get(this.url + 'topics/' + page);
+    }
 }

@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <label for="code">Código</label>
-            <textarea type="text" name="code" #code="ngModel" [(ngModel)]="topic.code" required class="form-control" ></textarea>
+            <textarea type="text" name="code" #code="ngModel" [(ngModel)]="topic.code" class="form-control" ></textarea>
 
             <small *ngIf="!code.valid && code.touched" class="invalid-feedback d-block">
                 El código no es válido
