@@ -67,4 +67,16 @@ export class UserService {
         return this.token;
     }
 
+    update(user): Observable<any> {
+        //Convert user object into JSON
+        let params = JSON.stringify(user);
+
+        //Define headers
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                       .set('Authorization', this.getToken());
+
+        //Ajax petition
+        return this._http.put(this.url + 'update', params, { headers: headers });
+    }
+
 }
