@@ -66,4 +66,9 @@ export class TopicService {
         //Ajax petition
         return this._http.get(this.url + 'topics/' + page);
     }
+
+    search(search): Observable<any> {
+        //Ajax petition
+        return this._http.get(this.url + 'search/' + search);
+    }
 }

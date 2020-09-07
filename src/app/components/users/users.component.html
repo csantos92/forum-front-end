@@ -1,0 +1,18 @@
+<div class="col-lg-12 mt-3">
+    <!--Page title-->
+    <h1>{{ page_title }}</h1>
+    <hr />
+
+    <!--Threads list-->
+    <ul class="list-group list-users">
+        <li class="list-group-item" *ngFor="let user of users" >
+            <img class="avatar float-left mr-3" src="{{ url + 'avatar/' + user.image }}" alt="avatar" *ngIf="user.image"/>
+            <img class="avatar float-left mr-3" src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg" alt="avatar" *ngIf="!user.image"/>
+            <a [routerLink]="['/profile/', user._id]">
+                <h4>{{ user.name }}</h4>
+            </a>
+            <a [routerLink]="['/profile/', user._id]" class="btn btn-sm btn-success float-right">Ir al perfil</a>
+        </li>
+    </ul>
+
+</div>

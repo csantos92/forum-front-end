@@ -18,9 +18,53 @@
         </p>
         <p id="topic-code" class="mt-2" *ngIf="topic.code && topic.lang">
             <ngx-highlight-js lang="{{ topic.lang }}" code="{{ topic.code }}">
-                
+
             </ngx-highlight-js>
         </p>
+    </div>
+
+    <div id="comment-box" class="mt-5">
+        <h3>Comentarios</h3>
+        <hr />
+
+        <ul class="list-group list-comments mt-4">
+            <li class="list-group-item" *ngFor="let comment of topic.comments">
+                <img class="avatar float-left mr-3" *ngIf="comment.user.image" src="{{ url + 'avatar/' + comment.user.image }}">
+                <span class="badge badge-primary mb-4">
+                    {{ comment.user.name + ' ' + comment.user.surname }}
+                </span>
+                <span class="badge badge-light ml-2">
+                    {{ comment.date | amLocale: 'es' | amTimeAgo }}
+                </span>
+                <p>
+                    {{ comment.content }}
+                </p>
+                <button (click)="deleteComment(comment._id)" *ngIf="identity._id == comment.user._id" class="btn btn-danger btn-sm float-right">
+                    Eliminar</button>
+            </li>
+        </ul>
+
+        <div class="alert alert-success mt-4" *ngIf="status == 'success'">
+            Tema comentado con éxito
+        </div>
+
+        <div class="alert alert-danger mt-4" *ngIf="status == 'error'">
+            Error al comentar en el tema
+        </div>
+
+        <form #formComment="ngForm" (ngSubmit)="onSubmit(formComment)" *ngIf="identity" class="mt-4">
+            <div class="form-group">
+                <label for="content">Escribe un comentario:</label>
+                <textarea type="text" name="content" #content="ngModel" [(ngModel)]="comment.content"
+                    class="form-control"></textarea>
+
+                <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">
+                    El comentario no es válido
+                </small>
+            </div>
+
+            <input type="submit" value="Comentar" class="btn btn-success mb-4" [disabled]="formComment.invalid" />
+        </form>
     </div>
 
 

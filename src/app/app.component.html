@@ -14,17 +14,23 @@
           <a class="nav-link" [routerLink]="['/topics']">Ver temas</a>
         </li>
         <li class="nav-item" *ngIf="identity">
-          <a class="nav-link" [routerLink]="['/home']">Ver compañeros</a>
+          <a class="nav-link" [routerLink]="['/users']">Ver compañeros</a>
         </li>
         <li class="nav-item ml-4">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="¿Qué estás buscando?" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+          <form class="form-inline my-2 my-lg-0" #searchForm="ngForm">
+            <input class="form-control mr-sm-2" type="search" placeholder="¿Qué estás buscando?" aria-label="Search" name="busqueda" #busqueda="ngModel" [(ngModel)]="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="goSearch()">Buscar</button>
           </form>
         </li>
       </ul>
 
       <ul class="navbar-nav nabvar-rigth">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']" *ngIf="!identity">Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']" *ngIf="!identity">Registrarse</a>
+        </li>
         <li class="nav-item" *ngIf="identity && identity.image">
           <img class="avatar" src="{{ url + 'avatar/' + identity.image }}">
         </li>
@@ -35,7 +41,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLink]="['/panel']">Panel de usuario</a>
-            <a class="dropdown-item" href="#">Mi perfil</a>
+            <a class="dropdown-item" [routerLink]="['/profile/', identity._id]">Mi perfil</a>
             <a class="dropdown-item" [routerLink]="['/settings']">Editar usuario</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item pointer" (click)="logout()">Cerrar sesión</a>

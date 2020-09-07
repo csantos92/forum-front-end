@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, DoCheck {
   public identity;
   public token;
   public url: string;
+  public search;
 
   constructor(
     private _userService: UserService,
@@ -36,7 +37,6 @@ export class AppComponent implements OnInit, DoCheck {
     this.identity = this._userService.getIdentity();
   }
 
-
   logout() {
     //Wipe out local storage data
     localStorage.clear();
@@ -47,5 +47,11 @@ export class AppComponent implements OnInit, DoCheck {
 
     //Redirect
     this._router.navigate(['/home']);
-}
+  }
+
+  goSearch() {
+    //Redirect
+    this._router.navigate(['/search', this.search]);
+  }
+
 }

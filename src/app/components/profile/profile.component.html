@@ -1,0 +1,31 @@
+<div class="col-lg-12 mt-3">
+    <!--User info-->
+    <div>
+        <img class="avatar float-left mr-3" src="{{ url + 'avatar/' + user.image }}" alt="avatar" *ngIf="user.image" />
+        <img class="avatar float-left mr-3"
+            src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg"
+            alt="avatar" *ngIf="!user.image" />
+        <h1>Temas de {{ user.name }}</h1>
+        <hr />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <!--Threads list-->
+    <ul class="list-group list-topics mt-5">
+        <li class="list-group-item" *ngFor="let topic of topics">
+            <a [routerLink]="['/topic/', topic._id]">
+                <h4>{{ topic.title }}</h4>
+            </a>
+            <span class="badge badge-light ml-2">
+                {{ topic.date | amLocale: 'es' | amTimeAgo }}
+            </span>
+            <a [routerLink]="['/topic/', topic._id]" class="btn btn-sm btn-success float-right">Leer</a>
+        </li>
+    </ul>
+
+    <p *ngIf="!topics">
+        Nada
+    </p>
+
+</div>
