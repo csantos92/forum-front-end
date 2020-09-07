@@ -1,8 +1,15 @@
 # ForumFrontEnd
 
-https://i.ibb.co/V3T68jT/forum.png
+Forum front-end made with Angular 10
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
+## Preview
+
+![alt text](https://i.ibb.co/V3T68jT/forum.png)
+
+## Back-end
+
+https://github.com/csantos92/forum-back-end
+
 
 ## Development server
 
