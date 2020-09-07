@@ -1,4 +1,4 @@
-# ForumFrontEnd
+# Forum Front-End
 
 Forum front-end made with Angular 10
 
